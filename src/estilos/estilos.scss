@@ -1,0 +1,99 @@
+/*
+
+    Ficheiro Criado por:
+        Gonçalo Reis - a2021142030@isec.pt
+        Pedro Paiva - 
+        João Jacinto - 
+
+
+*/
+
+@mixin flex-center-center{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+header{
+    height: 4.5rem;
+    width: 100%;
+    background: rgb(166, 166, 211);
+    @include flex-center-center();
+    padding: 0 2rem;
+
+    p.title{
+        font-size: 22px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    button{
+        padding: 10px 15px;
+        font-size: 15px;
+        background-color: transparent;
+        border: 3px solid rgb(41, 41, 122);
+        border-radius: 2px;
+        font-weight: bold;
+        color: rgb(41, 41, 122);
+        transition: 0.2s;
+        cursor: pointer;
+
+        &:hover{
+            background-color: white;
+        }
+    }
+}
+
+div.gameArea{
+    height: calc(100vh - 4.5rem);
+    width: 100%;
+    
+    >div{
+        margin: auto;
+        margin-top: 4rem;
+        display: flex;
+        width: 70%;
+        height: 90%;
+        border: 1px solid black;
+        transition: 0.5s;
+
+        div.tabuleiroArea{
+            border: 1px solid black;
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div.controlosArea{
+            border: 1px solid black;
+            flex: 2;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 390px){
+    header{
+        padding: 0 1rem;
+        p.title{
+            font-size: 17px;
+        }
+
+        button{
+            padding: 8px 13px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media only screen and(max-width: 1455px){
+    div.gameArea{
+        >div{
+            // margin-top: 2rem;
+            // flex-direction: column;
+            width: 90%;
+        }
+    }
+}

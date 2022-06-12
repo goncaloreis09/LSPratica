@@ -1,0 +1,117 @@
+/*
+
+    Ficheiro Criado por:
+        Gonçalo Reis - a2021142030@isec.pt
+        Pedro Paiva - 
+        João Jacinto - 
+
+
+*/
+
+h2.title{
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+div.controlos{
+    margin-top: 3rem;
+    width: 100%;
+    >div.dificuldade-box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        >p{
+            font-size: 18px;
+        }
+
+        select.dificuldadeControl{
+            margin: 0 10px;
+            width:  150px;
+            height: 2.5rem;
+            padding: 10px;
+            option{
+                padding: 20px;
+            }
+        }
+    }
+
+    >div.start{
+        text-align: center;
+        margin-top: 1rem;
+        >button{
+            cursor: pointer;
+            padding: 15px 20px;
+            border: 3px solid rgb(7, 54, 54);
+            border-radius: 5px;
+            background-color: rgb(23, 100, 100);
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+
+            &:hover{
+                background-color: rgb(30, 112, 112);
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+            }
+        }
+
+        .stop-clock{
+            background: rgb(167, 62, 62);
+            border-color: rgb(124, 38, 38);
+
+            &:hover{
+                background-color: rgb(190, 95, 95);
+            }
+        }
+    }
+}
+
+div.timer{
+    margin-top: 2rem;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >h4{
+        margin-right: 30px;
+    }
+
+    >p:first-of-type{
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    >p:last-of-type{
+        font-size: 20px;
+    }
+
+    >p.time-almost-ending{
+        color: rgb(204, 149, 47);
+    }
+
+    >p.time-ending{
+        color: rgb(131, 32, 32);
+        animation: infinite 1s blink;
+    }
+}
+
+div.palavras{
+    margin-top: 1rem;
+    >p{
+        font-size: 22px;
+        text-transform: uppercase;
+        color:rgb(7, 54, 54);
+        text-align: center;
+    }
+}
+
+@keyframes blink{
+    from{
+        opacity: 100%;
+    }
+    to{
+       opacity: 0%;
+    }
+}

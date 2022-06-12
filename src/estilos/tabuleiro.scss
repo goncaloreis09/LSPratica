@@ -1,0 +1,30 @@
+/*
+
+    Ficheiro Criado por:
+        Gonçalo Reis - a2021142030@isec.pt
+        Pedro Paiva - 
+        João Jacinto - 
+
+
+*/
+
+
+
+.tabuleiro{
+    height: 2vh;
+    background-color: red;
+    display: flex;
+    flex-wrap: wrap;
+
+    div.quadrado{
+        height: 2.5rem;
+        width: 2.5rem;
+        border: 3px solid orange;
+        background-color: aqua;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        float: left;
+    }
+}
