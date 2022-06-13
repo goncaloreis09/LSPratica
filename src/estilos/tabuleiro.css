@@ -10,7 +10,6 @@
 */
 .tabuleiro {
   height: 2vh;
-  background-color: red;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -34,5 +33,9 @@
           justify-content: center;
   cursor: pointer;
   float: left;
+}
+
+.tabuleiro div.quadrado:hover {
+  background-color: aquamarine;
 }
 /*# sourceMappingURL=tabuleiro.css.map */

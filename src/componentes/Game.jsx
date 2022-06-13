@@ -9,10 +9,12 @@ function Game(props){
         <div className="gameArea">
             <div>
                 <div className="tabuleiroArea">
-                    <Tabuleiro letras={props.letras}></Tabuleiro>
+                    <Tabuleiro letras={props.letras} tamTab={props.tamTab}></Tabuleiro>
                 </div>
                 <div className="controlosArea">
-                    <Controlos timer={props.timer} start={props.start} gameStarted={props.gameStarted} escolhePalavras={props.escolhePalavras} escolheLetra={props.escolheLetras}></Controlos>
+                    <Controlos timer={props.timer} start={props.start} gameStarted={props.gameStarted} escolhePalavras={props.escolhePalavras} escolheLetra={props.escolheLetras}
+                            setTamanho={props.setTamanhoTabuleiro}
+                    ></Controlos>
                     <Palavras palavras={props.palavras}></Palavras>
                 </div>
             </div>

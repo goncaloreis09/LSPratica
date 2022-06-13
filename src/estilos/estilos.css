@@ -79,6 +79,8 @@ div.gameArea > div div.tabuleiroArea {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 100%;
+  background-color: yellow;
 }
 
 div.gameArea > div div.controlosArea {

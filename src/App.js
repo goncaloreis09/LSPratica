@@ -21,7 +21,7 @@ function App() {
   const letrasSelecionadas = []
 
   //Guarda o tamanho do tabuleiro
-  const [tamTab, setTamTab] = useState()
+  let tamTab
 
   //Guarda as palavras pelas quais o utilizador deve procurar
   const [palavras, setPalavras] = useState([])
@@ -34,6 +34,31 @@ function App() {
 
   //Jogo inicializado
   const [gameStarted, setGameStarted] = useState(false)
+
+  //Tamanho do tabuleiro (div)
+  const [tamanhoTabuleiro, setTamanhoTabuleiro] = useState()
+
+  const tamTabuleiro = (e) => {
+      let tb = parseInt(e.target.value)
+
+      if(tb === 10)
+        setTamanhoTabuleiro(state => {
+          state = 25
+          return state
+        })
+      else if(tb === 13)
+        setTamanhoTabuleiro(state => {
+          state = 32.5
+          return state
+        })
+      else
+        setTamanhoTabuleiro(state => {
+          state = 37.5
+          return state
+        })
+
+      console.log(tamanhoTabuleiro)
+  }
 
   useEffect(() => {
     if (gameStarted) {
@@ -68,6 +93,7 @@ function App() {
       setGameStarted(true)
   }
 
+  
   const escolherPalavras = () => {
     if(gameStarted){
       for(let i = 0; i < 5; i++){
@@ -76,7 +102,10 @@ function App() {
       }
 
     
-      setPalavras([...palavrasSelecionadas])
+      setPalavras(state => {
+        state =   palavrasSelecionadas
+        return state
+      })
     }
 
       
@@ -85,26 +114,26 @@ function App() {
 
   const escolherLetras = (e) => {
     let tamSelecionado = e.target.value
-    setTamTab(parseInt(tamSelecionado))
-
-    console.log(tamTab)
-
+    tamTab = tamSelecionado
     let realtam = tamTab * tamTab
     for(let i = 0; i < realtam; i++){
       let random = Math.floor(Math.random() * 10)
       palavrasSelecionadas.push(abecedario[random])
     }
-    console.log(tamTab)
-    console.log(realtam)
 
     setLetra([...palavrasSelecionadas])
-
   }
+
+  useEffect(() => {
+    
+  }, )
 
   return (
     <div className="App">
         <Header></Header>
-        <Game timer={tempo} start={comecarJogo} gameStarted={gameStarted} palavras={palavras} escolhePalavras={escolherPalavras} escolheLetras={escolherLetras} letras={letra}></Game>
+        <Game timer={tempo} start={comecarJogo} gameStarted={gameStarted} palavras={palavras} escolhePalavras={escolherPalavras} escolheLetras={escolherLetras} letras={letra} tamTab={tamanhoTabuleiro}
+              setTamanhoTabuleiro={tamTabuleiro}
+        ></Game>
     </div>
   );
 }

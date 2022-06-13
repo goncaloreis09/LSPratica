@@ -12,7 +12,6 @@
 
 .tabuleiro{
     height: 2vh;
-    background-color: red;
     display: flex;
     flex-wrap: wrap;
 
@@ -26,5 +25,9 @@
         justify-content: center;
         cursor: pointer;
         float: left;
+
+        &:hover{
+            background-color: aquamarine;
+        }
     }
 }

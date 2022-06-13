@@ -1,7 +1,7 @@
 import "../estilos/controlos.css"
 
 
-function Controlos({timer, start, gameStarted, escolhePalavras, escolheLetra}){
+function Controlos({timer, start, gameStarted, escolhePalavras, escolheLetra, setTamanho}){
 
     var time_almost_ending = timer <= 30
     var time_ending = timer <= 10
@@ -11,13 +11,18 @@ function Controlos({timer, start, gameStarted, escolhePalavras, escolheLetra}){
         escolhePalavras()
     }
 
+    const defenirTabuleiro = (e) => {
+        escolheLetra(e)
+        setTamanho(e)
+    }
+
     return(
         <div>
             <h2 className="title">Controlos</h2>
             <div className="controlos">
                 <div className="dificuldade-box">
                     <p>Dificuldade</p>
-                    <select name="" id="" className="dificuldadeControl" onInput={e => escolheLetra(e)}>
+                    <select name="" id="" className="dificuldadeControl" onInput={e => defenirTabuleiro(e)}>
                         <option value="10">Fácil (10x10)</option>
                         <option value="13">Médio (13x13)</option>
                         <option value="15">Fácil (15x15)</option>
