@@ -50,44 +50,49 @@ header button:hover {
 div.gameArea {
   height: calc(100vh - 4.5rem);
   width: 100%;
+  padding-top: 2rem;
 }
 
 div.gameArea > div {
   margin: auto;
-  margin-top: 4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 70%;
   height: 90%;
-  border: 1px solid black;
+  border-radius: 20px;
+  background: #4e54c8;
+  background: -webkit-gradient(linear, left top, right top, from(#8f94fb), to(#dadcf3));
+  background: linear-gradient(to right, #8f94fb, #dadcf3);
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 div.gameArea > div div.tabuleiroArea {
-  border: 1px solid black;
   -webkit-box-flex: 3;
       -ms-flex: 3;
           flex: 3;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 100%;
-  background-color: yellow;
 }
 
 div.gameArea > div div.controlosArea {
-  border: 1px solid black;
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
+}
+
+a.ver-autores {
+  position: fixed;
+  left: 47%;
+  bottom: 2%;
+  color: #9090da;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 @media only screen and (max-width: 390px) {

@@ -14,12 +14,14 @@
     height: 2vh;
     display: flex;
     flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top: 5rem;
 
-    div.quadrado{
+    .quadrado{
         height: 2.5rem;
         width: 2.5rem;
-        border: 3px solid orange;
-        background-color: aqua;
+        border: 3px solid rgb(90, 189, 228);
+        background-color: rgb(195, 218, 233);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -27,7 +29,17 @@
         float: left;
 
         &:hover{
-            background-color: aquamarine;
+            background-color: rgb(161, 181, 194);
         }
+
+        &:active{
+            background-color: rgb(112, 127, 136);
+        }
+
+    }
+
+    div.selecionado{
+        border: 3px solid rgb(41, 162, 209);
+        background-color: rgb(121, 182, 223);
     }
 }

@@ -13,7 +13,7 @@ function Game(props){
                 </div>
                 <div className="controlosArea">
                     <Controlos timer={props.timer} start={props.start} gameStarted={props.gameStarted} escolhePalavras={props.escolhePalavras} escolheLetra={props.escolheLetras}
-                            setTamanho={props.setTamanhoTabuleiro}
+                            setTamanho={props.setTamanhoTabuleiro} definirPosicoes={props.definirPosicoes}
                     ></Controlos>
                     <Palavras palavras={props.palavras}></Palavras>
                 </div>

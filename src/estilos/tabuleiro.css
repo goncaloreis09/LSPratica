@@ -15,13 +15,15 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin: 0 auto;
+  margin-top: 5rem;
 }
 
-.tabuleiro div.quadrado {
+.tabuleiro .quadrado {
   height: 2.5rem;
   width: 2.5rem;
-  border: 3px solid orange;
-  background-color: aqua;
+  border: 3px solid #5abde4;
+  background-color: #c3dae9;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -35,7 +37,12 @@
   float: left;
 }
 
-.tabuleiro div.quadrado:hover {
-  background-color: aquamarine;
+.tabuleiro .quadrado:hover {
+  background-color: #a1b5c2;
+}
+
+.tabuleiro div.selecionado {
+  border: 3px solid #29a2d1;
+  background-color: #79b6df;
 }
 /*# sourceMappingURL=tabuleiro.css.map */

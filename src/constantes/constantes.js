@@ -11,4 +11,6 @@ export const PALAVRAS = [
      "ember",
 ]
 
-export const GAME_TIME = 35
+export const GAME_TIME = 120
+
+export const DEFAULT_SIZE = 10
