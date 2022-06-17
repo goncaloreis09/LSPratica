@@ -103,85 +103,202 @@ function App() {
       //Direcao = 1  Direita -> esquerda
       //Direcao = 2  cima ->baixo
       //Direcao = 3  baixo -> cima
-
       if(palavras.length !== 0)
-        for(let palavra of palavras){
-          let randomPosWord = Math.floor(Math.random() * (realtam-1))
+        for(let i = 0; i < 5; i++){
+          let randomPos = Math.floor(Math.random() * (realtam-1))
           let randomDir = Math.floor(Math.random() * 4)
-          let str = palavra;
-          if(randomDir === 1){
-            str = ''
-            for(let i = palavra.length - 1; i>=0; i--){
-              str = str + palavra[i]
+          let randomWord = Math.floor(Math.random() * 5)
+
+          let mPosicoes = []
+          let mLetras = []
+
+          if(posicoes.length !== 0){
+            for(let pos of posicoes){
+              if(palavras[randomWord] === pos.palavra){
+                while(palavras[randomWord] === pos.palavra){
+                  randomWord = Math.floor(Math.random() * 5)
+                }
+              }
             }
           }
-          posicoes.push({word: str, posicao: randomPosWord, direcao: randomDir})
-        }
 
-        for(let n of posicoes){
-          if(n.direcao === 2 || n.direcao === 3){
-              palavrasVerticais.push({palavra: n.word, tamanho: n.word.length, posicaoInicial: n.posicao, escrito: 0})
+
+          if(randomDir === 0 || randomDir === 1){
+            let linha = 1;
+
+            
+
+            for(let i = 0; i < tamTabQuadrados; i++){
+              for(let p of posicoes){
+                if(p.direcao === 0 || p.direcao === 1){
+                  while(p.posicoes[0] + (p.palavra.length - 1) > ((tamTabQuadrados-1) * linha)){
+                    p.posicoes[0] = Math.floor(Math.random() * (realtam-1))
+                    console.log(p.palavra)
+                  }
+                  
+                  for(let k = 0; k < p.palavra.length ; k++){
+                    if(k !== 0) p.posicoes[k] = p.posicoes[k-1] + 1
+                  }
+  
+                 }else if(p.direcao === 2 || p.direcao === 3){
+                  while(p.posicoes[0] + ((p.palavra.length - 1) * tamTabQuadrados) > (realtam - 1)){
+                    p.posicoes[0] = p.posicoes[0] - tamTabQuadrados
+                    console.log(p.palavra)
+                  }
+
+                  for(let k = 0; k < p.palavra.length ; k++){
+                    if(k !== 0) p.posicoes[k] = p.posicoes[0] + (k * tamTabQuadrados)
+                  }
+  
+                }
+              }
+              linha++;
+            }
+            linha = 1
+            let firstIteration = true
+            for(let c of palavras[randomWord]){
+              mLetras.push(c)
+              if(firstIteration) mPosicoes.push(randomPos)
+              else{
+                randomPos++
+                mPosicoes.push(randomPos)
+              }
+              firstIteration = false
+            }
+          }else{
+            let firstIteration = true
+            for(let c of palavras[randomWord]){
+              mLetras.push(c)
+              if(firstIteration) mPosicoes.push(randomPos)
+              else{
+                randomPos = randomPos + tamTabQuadrados
+                mPosicoes.push(randomPos)
+              }
+              firstIteration = false
+            }
           }
+
+          posicoes.push({palavra: palavras[randomWord], letras: mLetras, posicoes: mPosicoes, direcao: randomDir, escrito: 0})
         }
 
-        // for(let i = 0; i < realtam; i++){
-          
-        //     for(let posicao of posicoes){
-        //       if((posicao.posicao + posicao.word.length)/(tamTabQuadrados*linha) > 1){
-        //         while((posicao.posicao + posicao.word.length)/(tamTabQuadrados*linha) > 1){
-        //           console.log("ui")
-        //           posicao.posicao = Math.floor(Math.random() * (realtam-1))
-        //         }
-        //       }
-        //   }
-        //   if((i+1)%tamTabQuadrados === 0) linha++
-        // }
-        console.log(posicoes)
-        linha = 1
+      console.log(posicoes)
 
       for(let i = 0; i < realtam; i++){
-        let chosenWord = "";
-
-        if(palavrasVerticais.length !== 0){
-          for(let pv of palavrasVerticais){
-            if(i === pv.posicaoInicial && (pv.posicaoInicial+(tamTabQuadrados * pv.tamanho)) <= tamTabQuadrados*tamTabQuadrados){
-              //palavrasSelecionadas.push(pv.word[0])
-              console.log("ei")
-              // pv.escrito = pv.escrito + 1;
-              // pv.posicaoInicial = pv.posicaoInicial + tamTabQuadrados
-            }
-          }
-        }
-
+        let r = Math.floor(Math.random() * 24)
         if(posicoes.length !== 0){
-          for(let posicao of posicoes){
-            if(i === posicao.posicao && (posicao.posicao + posicao.word.length)/(tamTabQuadrados*linha) <= 1){
-              chosenWord = posicao.word
+          let writen = false
+          for(let pos of posicoes){
+            if(i === pos.posicoes[pos.escrito] && pos.escrito < pos.letras.length ){
+              palavrasSelecionadas.push(pos.letras[pos.escrito].toUpperCase())
+              pos.escrito = pos.escrito + 1
+             // i = i + 1
+              writen = true
+              break
             }
           }
-          if(chosenWord.length > 0){
-            for(let letra of chosenWord)
-              palavrasSelecionadas.push(letra.toUpperCase())
+          if(writen === false)
+            palavrasSelecionadas.push("-")
 
-            i = i + (chosenWord.length - 1)
-            chosenWord = ""
-          }else{
-            let random = Math.floor(Math.random() * 24)
-            palavrasSelecionadas.push(abecedario[random])
-          }
-          
         }else{
-          let random = Math.floor(Math.random() * 24)
-          palavrasSelecionadas.push(abecedario[random])
+          palavrasSelecionadas.push("-")
         }
-
-        if((i+1)%tamTabQuadrados === 0) linha++
       }
 
       setLetra([...palavrasSelecionadas])
-      
       palavrasSelecionadas.length = 0
-    }
+
+    //   if(palavras.length !== 0)
+    //     for(let palavra of palavras){
+    //       let randomPosWord = Math.floor(Math.random() * (realtam-1))
+    //       let randomDir = Math.floor(Math.random() * 4)
+    //       let str = palavra;
+    //       if(randomDir === 1){
+    //         str = ''
+    //         for(let i = palavra.length - 1; i>=0; i--){
+    //           str = str + palavra[i]
+    //         }
+    //       }
+    //       posicoes.push({word: str, posicao: randomPosWord, direcao: randomDir})
+    //     }
+
+    //     for(let n of posicoes){
+    //       if(n.direcao === 2 || n.direcao === 3){
+    //           palavrasVerticais.push({palavra: n.word, tamanho: n.word.length, posicaoInicial: n.posicao, escrito: 0})
+
+    //           for(let i = 0; i < posicoes.length; i++){
+    //             if(posicoes[i].word === n.word) posicoes.splice(i, 1);
+    //           }
+    //       }
+    //     }
+
+    //     console.log(palavrasVerticais)
+
+    //     // for(let i = 0; i < realtam; i++){
+          
+    //     //     for(let posicao of posicoes){
+    //     //       if((posicao.posicao + posicao.word.length)/(tamTabQuadrados*linha) > 1){
+    //     //         while((posicao.posicao + posicao.word.length)/(tamTabQuadrados*linha) > 1){
+    //     //           console.log("ui")
+    //     //           posicao.posicao = Math.floor(Math.random() * (realtam-1))
+    //     //         }
+    //     //       }
+    //     //   }
+    //     //   if((i+1)%tamTabQuadrados === 0) linha++
+    //     // }
+    //     console.log(posicoes)
+    //     linha = 1
+
+    //   for(let i = 0; i < realtam; i++){
+    //     let chosenWord = "";
+
+    //     if(palavrasVerticais.length !== 0){
+    //       for(let pv of palavrasVerticais){
+    //         if(i === pv.posicaoInicial && (pv.posicaoInicial+(tamTabQuadrados * pv.tamanho)) <= tamTabQuadrados*tamTabQuadrados && pv.escrito < pv.tamanho){
+    //           palavrasSelecionadas.push(pv.palavra[pv.escrito].toUpperCase())
+    //           console.log("oi"+palavrasSelecionadas)
+    //           // let i;
+    //           // for(let letra of pv.word){
+    //           //   if(i === pv.escrito) palavrasSelecionadas.push(letra.toUpperCase())
+    //           //   i++
+    //           // }
+    //            i++
+    //            pv.escrito = pv.escrito + 1;
+    //            pv.posicaoInicial = pv.posicaoInicial + tamTabQuadrados
+    //            console.log(tamTabQuadrados)
+    //            console.log(pv)
+    //         }
+    //       }
+    //     }
+
+    //     if(posicoes.length !== 0){
+    //       for(let posicao of posicoes){
+    //         if(i === posicao.posicao && (posicao.posicao + posicao.word.length)/(tamTabQuadrados*linha) <= 1){
+    //           chosenWord = posicao.word
+    //         }
+    //       }
+    //       if(chosenWord.length > 0){
+    //         for(let letra of chosenWord)
+    //           palavrasSelecionadas.push(letra.toUpperCase())
+
+    //         i = i + (chosenWord.length - 1)
+    //         chosenWord = ""
+    //       }else{
+    //         let random = Math.floor(Math.random() * 24)
+    //         palavrasSelecionadas.push(abecedario[random])
+    //       }
+          
+    //     }else{
+    //       let random = Math.floor(Math.random() * 24)
+    //       palavrasSelecionadas.push(abecedario[random])
+    //     }
+
+    //     if((i+1)%tamTabQuadrados === 0) linha++
+    //   }
+
+    //   setLetra([...palavrasSelecionadas])
+      
+    //   palavrasSelecionadas.length = 0
+     }
 
     setRender(prev => prev + 1)
 
